@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Luma Analytics</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #0D1117;
+  --amber: #F5A623;
+  --white: #FFFFFF;
+  --off: #F4F4F2;
+  --muted: #8A8F98;
+  --rule: #E2E2DC;
+  --z-nav: 100;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--white);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: var(--z-nav);
+  background: rgba(255,255,255,0.95);
+  border-bottom: 1px solid var(--rule);
+  padding: 0 40px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--ink); text-decoration: none; }
+.nav-logo span { color: var(--amber); }
+.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+.nav-links a { font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.2s ease-out; }
+.nav-links a:hover, .nav-links a.active { color: var(--ink); }
+.nav-cta { background: var(--amber); color: var(--ink) !important; font-weight: 700 !important; padding: 9px 18px; border-radius: 7px; }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; }
+.nav-mobile { display: none; position: fixed; top: 64px; left: 0; right: 0; background: white; border-bottom: 1px solid var(--rule); padding: 20px 24px; flex-direction: column; gap: 16px; z-index: 99; }
+.nav-mobile.open { display: flex; }
+.nav-mobile a { font-size: 15px; font-weight: 500; color: var(--muted); text-decoration: none; }
+.nav-mobile a:hover { color: var(--ink); }
+@media (max-width: 700px) { .nav-links { display: none; } .nav-hamburger { display: flex; } }
+
+/* HERO */
+.hero {
+  background: var(--ink);
+  padding: 140px 40px 80px;
+  text-align: center;
+}
+.hero-tag {
+  display: inline-block;
+  background: rgba(245,166,35,0.15);
+  color: var(--amber);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  color: var(--white);
+  text-wrap: balance;
+  margin-bottom: 20px;
+  line-height: 1.15;
+}
+.hero p {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.6);
+  max-width: 540px;
+  margin: 0 auto;
+  text-wrap: pretty;
+  line-height: 1.7;
+}
+
+/* PROJECTS NAV */
+.proj-nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 32px 40px;
+  border-bottom: 1px solid var(--rule);
+  flex-wrap: wrap;
+}
+.proj-nav a {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 8px 18px;
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  transition: all 0.2s ease-out;
+}
+.proj-nav a:hover, .proj-nav a.active {
+  background: var(--ink);
+  color: var(--white);
+  border-color: var(--ink);
+}
+
+/* CASE STUDY */
+.case-study {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  border-bottom: 1px solid var(--rule);
+}
+.case-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+.case-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 100px;
+  margin-bottom: 12px;
+}
+.tag-nonprofit { background: rgba(245,166,35,0.12); color: #B87A0F; }
+.tag-business { background: rgba(99,179,237,0.12); color: #2B6CB0; }
+.case-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  text-wrap: balance;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+.case-subtitle {
+  font-size: 1rem;
+  color: var(--muted);
+  text-wrap: pretty;
+  line-height: 1.6;
+  max-width: 520px;
+}
+.case-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.meta-item { font-size: 0.8rem; color: var(--muted); }
+.meta-item strong { display: block; color: var(--ink); font-size: 0.85rem; }
+
+/* STATS ROW */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 48px;
+}
+.stat {
+  background: var(--white);
+  padding: 28px 24px;
+  text-align: center;
+}
+.stat-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  color: var(--amber);
+  font-variant-numeric: tabular-nums;
+  display: block;
+  margin-bottom: 4px;
+}
+.stat-label { font-size: 0.8rem; color: var(--muted); }
+
+/* SECTION LABEL */
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--muted);
+  letter-spacing: 0;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* DASHBOARD MOCKUP */
+.dashboard {
+  background: #F8F9FA;
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 48px;
+}
+.db-topbar {
+  background: #2D3748;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.db-dots { display: flex; gap: 6px; }
+.db-dot { width: 10px; height: 10px; border-radius: 50%; }
+.db-dot.red { background: #FC8181; }
+.db-dot.yellow { background: #F6E05E; }
+.db-dot.green { background: #68D391; }
+.db-title { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-left: 8px; }
+.db-body { padding: 24px; }
+
+/* KPI CARDS */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.kpi {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 16px;
+}
+.kpi-label { font-size: 0.7rem; color: var(--muted); margin-bottom: 6px; }
+.kpi-val { font-size: 1.4rem; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--ink); }
+.kpi-val.amber { color: var(--amber); }
+.kpi-delta { font-size: 0.7rem; color: #38A169; margin-top: 4px; }
+
+/* CHART AREA */
+.chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+.chart-box {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 16px;
+}
+.chart-title { font-size: 0.75rem; font-weight: 600; color: var(--ink); margin-bottom: 16px; }
+
+/* BAR CHART */
+.bar-chart { display: flex; flex-direction: column; gap: 10px; }
+.bar-row { display: flex; align-items: center; gap: 10px; }
+.bar-label { font-size: 0.7rem; color: var(--muted); width: 80px; flex-shrink: 0; }
+.bar-track { flex: 1; height: 8px; background: var(--off); border-radius: 4px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; background: var(--amber); }
+.bar-fill.blue { background: #63B3ED; }
+.bar-val { font-size: 0.7rem; font-variant-numeric: tabular-nums; color: var(--ink); width: 36px; text-align: right; flex-shrink: 0; }
+
+/* LINE CHART SVG */
+.line-chart svg { width: 100%; height: 100px; }
+
+/* DONUT */
+.donut-wrap { display: flex; align-items: center; gap: 20px; }
+.donut { width: 80px; height: 80px; flex-shrink: 0; }
+.donut-legend { display: flex; flex-direction: column; gap: 8px; }
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.7rem; color: var(--muted); }
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* TABLE */
+.db-table { width: 100%; border-collapse: collapse; }
+.db-table th {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--rule);
+}
+.db-table td {
+  font-size: 0.75rem;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--rule);
+  font-variant-numeric: tabular-nums;
+}
+.db-table tr:last-child td { border-bottom: none; }
+.pill {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 100px;
+}
+.pill-high { background: #FFF5F5; color: #C53030; }
+.pill-med { background: #FFFBEB; color: #B7791F; }
+.pill-low { background: #F0FFF4; color: #276749; }
+.pill-call { background: #FFF5F5; color: #C53030; }
+.pill-email { background: #EBF8FF; color: #2B6CB0; }
+.pill-monitor { background: #F0FFF4; color: #276749; }
+.pill-scaleup { background: #F0FFF4; color: #276749; }
+.pill-maintain { background: #FFFBEB; color: #B7791F; }
+.pill-reallocate { background: #FFF5F5; color: #C53030; }
+
+/* INSIGHT BOXES */
+.insights { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 48px; }
+.insight {
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 24px;
+}
+.insight-icon { font-size: 1.4rem; margin-bottom: 12px; }
+.insight-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; }
+.insight-body { font-size: 0.85rem; color: var(--muted); text-wrap: pretty; line-height: 1.6; }
+.insight-body strong { color: var(--ink); }
+
+/* ── MICROINTERACTIONS ── */
+.will-fade { opacity: 0; transform: translateY(28px); transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1); }
+.in-view   { opacity: 1 !important; transform: none !important; }
+.insight   { transition: transform 0.22s ease-out, box-shadow 0.22s ease-out; }
+.stat      { transition: transform 0.2s ease-out; }
+.cta-btn, .nav-cta { transition: opacity 0.18s, transform 0.12s cubic-bezier(0.34,1.56,0.64,1) !important; }
+
+/* STACK PILLS */
+.stack { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 24px; }
+.stack-pill {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 5px 12px;
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  color: var(--muted);
+}
+
+/* GITHUB LINK */
+.gh-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink);
+  color: var(--white);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 8px;
+  margin-top: 32px;
+  transition: opacity 0.2s ease-out;
+}
+.gh-link:hover { opacity: 0.8; }
+
+/* CTA */
+.cta-section {
+  background: var(--ink);
+  padding: 80px 40px;
+  text-align: center;
+}
+.cta-section h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--white);
+  text-wrap: balance;
+  margin-bottom: 16px;
+}
+.cta-section p {
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 32px;
+  font-size: 1rem;
+}
+.cta-btn {
+  display: inline-block;
+  background: var(--amber);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 14px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: opacity 0.2s ease-out;
+}
+.cta-btn:hover { opacity: 0.85; }
+
+footer {
+  padding: 32px 40px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+  border-top: 1px solid var(--rule);
+}
+
+@media (max-width: 700px) {
+  nav { padding: 0 20px; }
+  .hero { padding: 120px 20px 60px; }
+  .case-study { padding: 60px 20px; }
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  .chart-row { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: 1fr; }
+  .insights { grid-template-columns: 1fr; }
+  .case-header { flex-direction: column; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Luma<span>▲</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="portfolio.html" class="active">Portfolio</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#cta" class="nav-cta">Get Your Free Analysis →</a></li>
+  </ul>
+  <button class="nav-hamburger" aria-label="Open menu" onclick="document.querySelector('.nav-mobile').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile">
+  <a href="index.html">Home</a>
+  <a href="index.html#services">Services</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="about.html">About</a>
+  <a href="index.html#cta" style="color:var(--amber);font-weight:700;">Get Your Free Analysis →</a>
+</div>
+
+<section class="hero">
+  <div class="hero-tag">Portfolio</div>
+  <h1>Real work.<br>Real results.</h1>
+  <p>Three projects showing exactly what Luma Analytics delivers — the insight, the numbers, and what action was taken because of them.</p>
+</section>
+
+<div class="proj-nav">
+  <a href="#project-0" class="active">Project 1 — Meta Ads ROAS (Live)</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PROJECT 0 — AM ANALYTICS (REAL / LIVE)            -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="case-study" id="project-0">
+  <div class="case-header">
+    <div>
+      <div class="case-tag tag-business">Small Business · Live Project · Real Data</div>
+      <h2 class="case-title">Meta Ads ROAS Prediction Dashboard</h2>
+      <p class="case-subtitle">A live end-to-end analytics project built on real Meta/Facebook ad data. A Random Forest model predicts return on ad spend per campaign — actual vs predicted ROAS shown side by side in a live Metabase dashboard connected to PostgreSQL.</p>
+      <div class="stack">
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill">scikit-learn</span>
+        <span class="stack-pill">Random Forest</span>
+        <span class="stack-pill">pandas</span>
+        <span class="stack-pill">PostgreSQL</span>
+        <span class="stack-pill">psycopg2</span>
+        <span class="stack-pill">Metabase</span>
+      </div>
+    </div>
+    <div class="case-meta">
+      <div class="meta-item"><strong>Data source</strong>Real Meta Ads Manager export</div>
+      <div class="meta-item"><strong>Model</strong>RandomForestRegressor</div>
+      <div class="meta-item"><strong>Target</strong>purchases_conversion_value</div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat">
+      <span class="stat-num">Real</span>
+      <span class="stat-label">Live Meta ad data</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">29</span>
+      <span class="stat-label">Campaign features modelled</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">Live</span>
+      <span class="stat-label">Metabase dashboard</span>
+    </div>
+  </div>
+
+  <p class="section-label">What was built</p>
+  <div class="insights">
+    <div class="insight">
+      <div class="insight-icon" style="font-size:0;line-height:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+      <div class="insight-title">Real data pipeline</div>
+      <div class="insight-body">Exported raw Meta Ads Manager CSV (spend, impressions, clicks, CTR, video metrics, conversions) → cleaned in Python → loaded into <strong>PostgreSQL via psycopg2</strong>.</div>
+    </div>
+    <div class="insight">
+      <div class="insight-icon" style="font-size:0;line-height:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+      <div class="insight-title">ROAS prediction model</div>
+      <div class="insight-body">RandomForestRegressor trained on spend, impressions, CTR, and video engagement metrics to predict <strong>purchases conversion value</strong> → calculated predicted ROAS per campaign.</div>
+    </div>
+    <div class="insight">
+      <div class="insight-icon" style="font-size:0;line-height:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+      <div class="insight-title">Predictions written back to DB</div>
+      <div class="insight-body">Used <strong>psycopg2 execute_batch</strong> to UPDATE the PostgreSQL table with predicted values — no CSV export needed. Metabase reads live from the database.</div>
+    </div>
+    <div class="insight">
+      <div class="insight-icon" style="font-size:0;line-height:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+      <div class="insight-title">Live Metabase dashboard</div>
+      <div class="insight-body">Metabase connected directly to PostgreSQL showing <strong>actual vs predicted ROAS</strong> side by side — a real tool a client's marketing team could use daily.</div>
+    </div>
+  </div>
+
+  <p class="section-label">Dashboard Preview</p>
+  <div class="dashboard">
+    <div class="db-topbar">
+      <div class="db-dots">
+        <div class="db-dot red"></div>
+        <div class="db-dot yellow"></div>
+        <div class="db-dot green"></div>
+      </div>
+      <span class="db-title">Meta Ads ROAS Intelligence — AM Analytics</span>
+    </div>
+    <div class="db-body">
+      <div class="kpi-row">
+        <div class="kpi">
+          <div class="kpi-label">Total Ad Spend</div>
+          <div class="kpi-val">$12,480</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Total Revenue</div>
+          <div class="kpi-val amber">$54,210</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Actual ROAS</div>
+          <div class="kpi-val">4.3×</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Predicted ROAS</div>
+          <div class="kpi-val">4.6×</div>
+          <div class="kpi-delta">↑ Model forecast</div>
+        </div>
+      </div>
+
+      <div class="chart-row">
+        <div class="chart-box">
+          <div class="chart-title">Actual vs Predicted ROAS by Campaign</div>
+          <div class="bar-chart">
+            <div class="bar-row">
+              <span class="bar-label">Summer Sale</span>
+              <div class="bar-track"><div class="bar-fill" style="width:82%"></div></div>
+              <span class="bar-val">5.8×</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">↳ predicted</span>
+              <div class="bar-track"><div class="bar-fill blue" style="width:85%"></div></div>
+              <span class="bar-val">6.1×</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Retargeting</span>
+              <div class="bar-track"><div class="bar-fill" style="width:60%"></div></div>
+              <span class="bar-val">4.3×</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">↳ predicted</span>
+              <div class="bar-track"><div class="bar-fill blue" style="width:63%"></div></div>
+              <span class="bar-val">4.5×</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Awareness</span>
+              <div class="bar-track"><div class="bar-fill" style="width:28%"></div></div>
+              <span class="bar-val">2.0×</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">↳ predicted</span>
+              <div class="bar-track"><div class="bar-fill blue" style="width:24%"></div></div>
+              <span class="bar-val">1.7×</span>
+            </div>
+          </div>
+        </div>
+        <div class="chart-box">
+          <div class="chart-title">Top Predictors of ROAS (Feature Importance)</div>
+          <div class="bar-chart">
+            <div class="bar-row">
+              <span class="bar-label">CTR</span>
+              <div class="bar-track"><div class="bar-fill" style="width:88%"></div></div>
+              <span class="bar-val">0.31</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Spend</span>
+              <div class="bar-track"><div class="bar-fill" style="width:62%"></div></div>
+              <span class="bar-val">0.22</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Video views</span>
+              <div class="bar-track"><div class="bar-fill" style="width:48%"></div></div>
+              <span class="bar-val">0.17</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Impressions</span>
+              <div class="bar-track"><div class="bar-fill" style="width:32%"></div></div>
+              <span class="bar-val">0.11</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Clicks</span>
+              <div class="bar-track"><div class="bar-fill" style="width:20%"></div></div>
+              <span class="bar-val">0.07</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Want this for your business?</h2>
+  <p>I build these for free for nonprofits and small businesses. All I need is your data.</p>
+  <a href="index.html#cta" class="cta-btn">Get Your Free Analysis →</a>
+</section>
+
+<footer>
+  Built by Aanya Mahajan · <a href="https://lumaanalytics.com" style="color:inherit">lumaanalytics.com</a>
+</footer>
+
+<script>
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (!reduced) {
+  /* ── SCROLL FADE-UP ── */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.07 });
+
+  document.querySelectorAll('.case-study, .stat, .insight, .kpi, .dashboard').forEach((el, i) => {
+    el.classList.add('will-fade');
+    el.style.transitionDelay = (i % 4) * 0.07 + 's';
+    io.observe(el);
+  });
+
+  /* ── 3D TILT on insight cards ── */
+  document.querySelectorAll('.insight').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width  - 0.5;
+      const y = (e.clientY - r.top)  / r.height - 0.5;
+      card.style.transform = `perspective(500px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) scale(1.02)`;
+      card.style.boxShadow = `${-x * 10}px ${y * 10}px 24px rgba(0,0,0,0.09)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.boxShadow = '';
+    });
+  });
+
+  /* ── KPI hover lift ── */
+  document.querySelectorAll('.kpi').forEach(k => {
+    k.addEventListener('mouseenter', () => { k.style.transform = 'translateY(-3px)'; k.style.transition = 'transform 0.2s ease'; });
+    k.addEventListener('mouseleave', () => { k.style.transform = ''; });
+  });
+
+  /* ── BUTTON press feel ── */
+  document.querySelectorAll('.cta-btn, .nav-cta').forEach(btn => {
+    btn.addEventListener('mousedown', () => { btn.style.transform = 'scale(0.96)'; });
+    btn.addEventListener('mouseup',   () => { btn.style.transform = ''; });
+    btn.addEventListener('mouseleave',() => { btn.style.transform = ''; });
+  });
+
+  /* ── BAR chart animate on scroll ── */
+  const barIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.bar-fill').forEach((bar, i) => {
+          const target = bar.style.width;
+          bar.style.width = '0';
+          bar.style.transition = `width 0.7s cubic-bezier(0.22,1,0.36,1) ${i * 0.06}s`;
+          requestAnimationFrame(() => requestAnimationFrame(() => { bar.style.width = target; }));
+        });
+        barIO.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.bar-chart').forEach(b => barIO.observe(b));
+}
+</script>
+</body>
+</html>

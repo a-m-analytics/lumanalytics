@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Luma Analytics</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #0D1117;
+  --amber: #F5A623;
+  --white: #FFFFFF;
+  --off: #F4F4F2;
+  --muted: #8A8F98;
+  --rule: #E2E2DC;
+  --z-nav: 100;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--white);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: var(--z-nav);
+  background: rgba(255,255,255,0.95);
+  border-bottom: 1px solid var(--rule);
+  padding: 0 40px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--ink); text-decoration: none; }
+.nav-logo span { color: var(--amber); }
+.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+.nav-links a { font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.2s ease-out; }
+.nav-links a:hover, .nav-links a.active { color: var(--ink); }
+.nav-cta { background: var(--amber); color: var(--ink) !important; font-weight: 700 !important; padding: 9px 18px; border-radius: 7px; }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; }
+.nav-mobile { display: none; position: fixed; top: 64px; left: 0; right: 0; background: white; border-bottom: 1px solid var(--rule); padding: 20px 24px; flex-direction: column; gap: 16px; z-index: 99; }
+.nav-mobile.open { display: flex; }
+.nav-mobile a { font-size: 15px; font-weight: 500; color: var(--muted); text-decoration: none; }
+.nav-mobile a:hover { color: var(--ink); }
+@media (max-width: 700px) { .nav-links { display: none; } .nav-hamburger { display: flex; } }
+
+/* HERO */
+.hero {
+  background: var(--ink);
+  padding: 140px 80px 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.hero-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 2px;
+  background: var(--amber);
+}
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  color: var(--white);
+  line-height: 1.1;
+  text-wrap: balance;
+  margin-bottom: 24px;
+}
+.hero h1 em { font-style: italic; color: var(--amber); }
+.hero-sub {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.75;
+  text-wrap: pretty;
+  max-width: 440px;
+}
+
+/* PHOTO CARD */
+.photo-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.photo-placeholder {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: rgba(245,166,35,0.08);
+  border: 1px solid rgba(245,166,35,0.15);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: rgba(245,166,35,0.4);
+  font-size: 0.8rem;
+}
+.photo-placeholder svg { opacity: 0.4; }
+.photo-caption {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.6;
+}
+.photo-caption strong { color: rgba(255,255,255,0.75); }
+
+/* MAIN CONTENT */
+.content {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 80px 40px;
+}
+
+.section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-label::before { content: ''; width: 24px; height: 2px; background: var(--amber); }
+
+.content h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  line-height: 1.1;
+  text-wrap: balance;
+  margin-bottom: 24px;
+}
+.content h2 em { font-style: italic; color: var(--amber); }
+
+.body-text {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.8;
+  text-wrap: pretty;
+  margin-bottom: 20px;
+}
+.body-text strong { color: var(--ink); }
+
+/* WHY FREE */
+.why-free {
+  background: var(--off);
+  padding: 64px 80px;
+}
+.why-free-inner {
+  max-width: 780px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.why-free h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  line-height: 1.1;
+  text-wrap: balance;
+  margin-bottom: 20px;
+}
+.why-free h2 em { font-style: italic; color: var(--amber); }
+.why-reasons { display: flex; flex-direction: column; gap: 24px; }
+.reason {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.reason-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem;
+  color: var(--amber);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 32px;
+}
+.reason-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; }
+.reason-body { font-size: 0.85rem; color: var(--muted); line-height: 1.65; text-wrap: pretty; }
+
+/* STACK */
+.stack-section {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  border-bottom: 1px solid var(--rule);
+}
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 40px;
+}
+.stack-item {
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 20px 24px;
+}
+.stack-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
+.stack-role { font-size: 0.8rem; color: var(--muted); }
+
+/* CTA */
+.cta-section {
+  background: var(--ink);
+  padding: 80px 40px;
+  text-align: center;
+}
+.cta-section h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--white);
+  text-wrap: balance;
+  margin-bottom: 16px;
+}
+.cta-section p { color: rgba(255,255,255,0.5); margin-bottom: 32px; }
+.cta-btn {
+  display: inline-block;
+  background: var(--amber);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 14px 36px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: opacity 0.2s ease-out;
+}
+.cta-btn:hover { opacity: 0.85; }
+
+footer {
+  padding: 32px 40px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+  border-top: 1px solid var(--rule);
+}
+
+@media (max-width: 800px) {
+  nav { padding: 0 20px; }
+  .hero { grid-template-columns: 1fr; padding: 120px 24px 60px; gap: 40px; }
+  .why-free { padding: 56px 24px; }
+  .why-free-inner { grid-template-columns: 1fr; }
+  .content { padding: 60px 24px; }
+  .stack-section { padding: 60px 24px; }
+  .stack-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Luma<span>▲</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="index.html#cta" class="nav-cta">Get Your Free Analysis →</a></li>
+  </ul>
+  <button class="nav-hamburger" aria-label="Open menu" onclick="document.querySelector('.nav-mobile').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile">
+  <a href="index.html">Home</a>
+  <a href="index.html#services">Services</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="about.html">About</a>
+  <a href="index.html#cta" style="color:var(--amber);font-weight:700;">Get Your Free Analysis →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow">About</div>
+    <h1>Hi, I'm Aanya.<br><em>I turn messy data into clear answers.</em></h1>
+    <p class="hero-sub">I'm a student based in Dallas, Texas. I work with nonprofits and small businesses to build prediction models that tell them what's coming — not just what already happened. Completely free.</p>
+  </div>
+  <div class="photo-card">
+    <div class="photo-placeholder">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Add your photo here
+    </div>
+    <p class="photo-caption">
+      <strong>Aanya Mahajan</strong> — Student & Data Scientist<br>
+      Dallas, Texas
+    </p>
+  </div>
+</section>
+
+<!-- MY STORY -->
+<section class="content">
+  <div class="section-label">My story</div>
+  <h2>Real insights should be<br><em>available to everyone.</em></h2>
+  <p class="body-text">
+    Most nonprofits and small businesses are sitting on data that could completely change how they make decisions — but they can't afford an agency, and the tools are too complex to figure out alone.
+  </p>
+  <p class="body-text">
+    I built Luma Analytics because I wanted to work on real problems, not textbook exercises. I take on projects across customer analytics, churn prediction, ad performance, and revenue forecasting — anything where the numbers aren't telling a clear story yet.
+  </p>
+  <p class="body-text">
+    Every project is free. You get a working prediction model and a clear set of actions. I get real-world experience. No fees, no lock-in, no strings.
+  </p>
+</section>
+
+<!-- WHY FREE -->
+<section class="why-free">
+  <div class="why-free-inner">
+    <div>
+      <h2>Why is it<br><em>free?</em></h2>
+      <p class="body-text">Because real projects teach you things no course ever could.</p>
+    </div>
+    <div class="why-reasons">
+      <div class="reason">
+        <div class="reason-num">1</div>
+        <div>
+          <div class="reason-title">Real problems beat practice problems</div>
+          <p class="reason-body">Working with actual data — real mess, real constraints, real stakes — teaches me more than any dataset designed to be clean.</p>
+        </div>
+      </div>
+      <div class="reason">
+        <div class="reason-num">2</div>
+        <div>
+          <div class="reason-title">Nonprofits deserve real insights too</div>
+          <p class="reason-body">Most small nonprofits can't get access to the kind of analysis that bigger organisations take for granted. If I can change that, it matters.</p>
+        </div>
+      </div>
+      <div class="reason">
+        <div class="reason-num">3</div>
+        <div>
+          <div class="reason-title">I want to give back while I learn</div>
+          <p class="reason-body">I'm at a stage where I can contribute something real. Doing it for free means I can work with organisations I actually care about — not just whoever can pay.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>What problem keeps you up at night?</h2>
+  <p>Tell me what's not making sense. I'll reply within 48 hours with a clear plan — no cost, no catch.</p>
+  <a href="index.html#cta" class="cta-btn">Get Your Free Analysis →</a>
+</section>
+
+<footer>
+  Built by Aanya Mahajan · <a href="https://lumaanalytics.com" style="color:inherit">lumaanalytics.com</a>
+</footer>
+
+</body>
+</html>
