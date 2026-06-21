@@ -639,6 +639,74 @@ nav {
   text-wrap: pretty;
 }
 
+/* ─── MISSION ─────────────────────────────────────────── */
+.mission {
+  background: var(--off);
+  padding: 100px 80px;
+}
+.mission-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 80px;
+  align-items: start;
+}
+.mission-heading {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  line-height: 1.1;
+  text-wrap: balance;
+  margin-top: 16px;
+}
+.mission-heading em { font-style: italic; color: var(--amber); }
+.mission-body {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 20px;
+  text-wrap: pretty;
+}
+.mission-values {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 36px;
+  padding-top: 36px;
+  border-top: 1px solid var(--rule);
+}
+.mission-value {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.mission-value-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(245,166,35,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--amber);
+  flex-shrink: 0;
+}
+.mission-value-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+  color: var(--ink);
+}
+.mission-value-body {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+@media (max-width: 800px) {
+  .mission { padding: 72px 24px; }
+  .mission-inner { grid-template-columns: 1fr; gap: 40px; }
+}
+
 /* ─── PROCESS BANNER ─────────────────────────────────────────── */
 .process-banner {
   background: var(--ink);
@@ -2082,6 +2150,49 @@ footer {
 </section>
 
 
+
+<!-- ─── MISSION ─── -->
+<section class="mission">
+  <div class="mission-inner">
+    <div class="mission-left">
+      <div class="section-label">Our Mission</div>
+      <h2 class="mission-heading">Data-driven decisions shouldn't be a <em>privilege.</em></h2>
+    </div>
+    <div class="mission-right">
+      <p class="mission-body">Most nonprofits and small businesses are sitting on data that could change everything — but real analytics has always been out of reach. Too expensive. Too complex. Too corporate.</p>
+      <p class="mission-body">Luma Analytics exists to change that. We believe every organisation — regardless of size or budget — deserves the kind of insight that helps them grow, retain the people they serve, and make smarter decisions. That's why everything we do is completely free.</p>
+      <div class="mission-values">
+        <div class="mission-value">
+          <div class="mission-value-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <div class="mission-value-title">Always free</div>
+            <div class="mission-value-body">No fees, no lock-in, no catch. Access to real data science for everyone.</div>
+          </div>
+        </div>
+        <div class="mission-value">
+          <div class="mission-value-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <div>
+            <div class="mission-value-title">Fast turnaround</div>
+            <div class="mission-value-body">Most projects delivered within 2 weeks — no lengthy contracts or waiting lists.</div>
+          </div>
+        </div>
+        <div class="mission-value">
+          <div class="mission-value-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <div class="mission-value-title">Community first</div>
+            <div class="mission-value-body">We prioritise nonprofits, grassroots organisations, and small businesses that need it most.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ─── PROCESS BANNER ─── -->
 <div class="process-banner">
