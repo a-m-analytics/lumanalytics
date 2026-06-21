@@ -639,6 +639,81 @@ nav {
   text-wrap: pretty;
 }
 
+/* ─── IMPACT STATEMENT ─────────────────────────────────────────── */
+.impact-statement {
+  background: var(--ink);
+  padding: 80px 80px;
+}
+.impact-inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+.impact-text {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  color: rgba(255,255,255,0.75);
+  line-height: 1.4;
+  text-wrap: balance;
+}
+.impact-text em {
+  font-style: italic;
+  color: var(--amber);
+}
+
+/* ─── WHO WE HELP ─────────────────────────────────────────── */
+.who-help {
+  padding: 100px 80px;
+  background: var(--white);
+  border-bottom: 1px solid var(--rule);
+}
+.who-help-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.who-help-header {
+  margin-bottom: 56px;
+}
+.who-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.who-card {
+  background: var(--off);
+  border-radius: 14px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.who-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(245,166,35,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--amber);
+  flex-shrink: 0;
+}
+.who-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--ink);
+}
+.who-body {
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+@media (max-width: 800px) {
+  .impact-statement { padding: 64px 24px; }
+  .who-help { padding: 72px 24px; }
+  .who-grid { grid-template-columns: 1fr; }
+}
+
 /* ─── MISSION ─────────────────────────────────────────── */
 .mission {
   background: var(--off);
@@ -2150,6 +2225,46 @@ footer {
 </section>
 
 
+
+<!-- ─── IMPACT STATEMENT ─── -->
+<section class="impact-statement">
+  <div class="impact-inner">
+    <p class="impact-text">Most small organisations never get to ask <em>"what's going to happen next?"</em> — they're too busy trying to figure out what already happened. We think that's wrong.</p>
+  </div>
+</section>
+
+<!-- ─── WHO WE HELP ─── -->
+<section class="who-help">
+  <div class="who-help-inner">
+    <div class="who-help-header">
+      <div class="section-label">Who We Help</div>
+      <h2 class="section-title" style="text-align:left;max-width:480px;">Built for the organisations that need it <em>most.</em></h2>
+    </div>
+    <div class="who-grid">
+      <div class="who-card">
+        <div class="who-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="who-title">Nonprofits & charities</div>
+        <p class="who-body">Understand donor behaviour, predict who's at risk of lapsing, and make the case for your impact with data — not just gut feel.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div class="who-title">Small businesses</div>
+        <p class="who-body">Know which customers are about to churn, which ad campaigns are actually working, and where to invest your limited budget for maximum return.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="who-title">Community organisations</div>
+        <p class="who-body">Turn membership data, event attendance, or survey responses into clear patterns that help you serve your community better.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ─── MISSION ─── -->
 <section class="mission">
